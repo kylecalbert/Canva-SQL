@@ -1,10 +1,3 @@
-SELECT * FROM artist
-SELECT * FROM canva_size
-SELECT * FROM image_link
-SELECT * FROM museum
-SELECT* FROM museum_hours
-
-
 
 -- 10) Identify the museums which are open on both Sunday and Monday. Display museum name, city.
 SELECT m.name, m.city
