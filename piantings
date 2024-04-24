@@ -1,23 +1,23 @@
--- SELECT * FROM artist
--- SELECT * FROM canva_size
--- SELECT * FROM image_link
--- SELECT * FROM museum
--- SELECT* FROM museum_hours
+SELECT * FROM artist
+SELECT * FROM canva_size
+SELECT * FROM image_link
+SELECT * FROM museum
+SELECT* FROM museum_hours
 
 
-10) Identify the museums which are open on both Sunday and Monday. Display museum name, city.
--- SELECT m.name, m.city
--- FROM museum_hours mh1
--- JOIN museum m ON m.museum_id = mh1.museum_id
--- WHERE mh1.day = 'Sunday'
--- AND EXISTS(
--- 	Select 1 
--- 	FROM museum_hours mh2
--- 	WHERE mh2.museum_id = mh1.museum_id AND mh2.day = 'Monday'
--- )
 
-15) Which museum is open for the longest during a day. Dispay museum name, state and hours open and which day?
+-- 10) Identify the museums which are open on both Sunday and Monday. Display museum name, city.
+SELECT m.name, m.city
+FROM museum_hours mh1
+JOIN museum m ON m.museum_id = mh1.museum_id
+WHERE mh1.day = 'Sunday'
+AND EXISTS(
+	Select 1 
+	FROM museum_hours mh2
+	WHERE mh2.museum_id = mh1.museum_id AND mh2.day = 'Monday'
+)
 
+-- 15) Which museum is open for the longest during a day. Dispay museum name, state and hours open and which day?
 select* FROM (SELECT
 	mh.museum_id,
 	M.state,
@@ -35,7 +35,7 @@ AS ranked_museums
 WHERE longest_open_rank = 1
 
 
-18) Display the country and the city with most no of museums. Output 2 seperate columns to mention the city and country. 
+-- 18) Display the country and the city with most no of museums. Output 2 seperate columns to mention the city and country. 
 WITH cte_country AS 
 	(SELECT country, COUNT(1)
 	,RANK() OVER(ORDER BY COUNT(1) DESC) AS rnk
